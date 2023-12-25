@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Bar from "./components/Bar";
+
+// CSS
 import "./App.css";
 
 class App extends Component {
@@ -39,13 +42,28 @@ class App extends Component {
     for (let i = 0; i < count; i++) {
       temp.push(this.generateRandomNumber(50, 200));
     }
+    // console.log(temp);
 
-    console.log(temp);
+    this.setState({
+      array: temp,
+      arraySteps: [temp],
+    });
   };
   render() {
+    let bars = this.state.array.map((value, index) => {
+      return (
+        <Bar
+          key={index}
+          index={index}
+          length={value}
+          color={this.state.colorKey[index]}
+        />
+      );
+    });
     return (
       <div className="App">
-        <h1>Deepak Chourasiya</h1>
+        {/* <h1>Deepak Chourasiya</h1> */}
+        {bars}
       </div>
     );
   }
